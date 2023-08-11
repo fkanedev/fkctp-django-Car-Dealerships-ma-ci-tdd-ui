@@ -2,6 +2,7 @@ name: 'Lint Code'
 
 on:
   workflow_dispatch:
+    branches: [master, main]
   push:
     branches: [master, main]
   pull_request:
