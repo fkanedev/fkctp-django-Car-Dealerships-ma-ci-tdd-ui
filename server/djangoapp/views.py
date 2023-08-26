@@ -121,11 +121,15 @@ def get_dealerships(request):
 # Create a `get_dealer_details` view to render the reviews of a dealer
 def get_dealer_details(request, dealer_id):
     context = {}
-    
+    has_review = False
+
     if request.method == "GET":
         # Get reviews the dealership with this dealer_id
         reviews = get_dealer_reviews_from_cf(GET_REVIEWS_URL, dealerId=dealer_id)
-        context['dealer_id'] = dealer_id      
+        if len(reviews) != 0:
+            has_review = True
+        context['dealer_id'] = dealer_id
+        context['has_review'] = has_review     
         context['reviews_list'] = reviews
         context['show_add_review_link'] = True
 

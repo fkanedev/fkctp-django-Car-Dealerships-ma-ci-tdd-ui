@@ -17,24 +17,28 @@
     {% endif %}
 
     <!-- Add reviews as cards -->
-    {% if reviews_list %}
-        <h4> No reviews added yet for this Dealership !</h4>    
-    {% else %}
-        <div class="card-columns">
-            {% for review in reviews_list %}
-                <div class="card">
-                    <img src="{{MEDIA_URL}}/emoji/{{review.sentiment}}.png" 
-                        alt="{{review.sentiment}} emoji" class="card-img-left">
-                    <div class="card-body">
-                        <label class="card-title">{{review.car_make}}</label>
-                        <label class="card-title">{{review.car_model}}</label>
-                        <label class="card-title">{{review.car_year}}</label>
-                        <label class="card-title">{{review.purchase_date}}</label>
-                        <label class="card-text">{{review.review}}</label>
+    {% if has_review %}
+        <h3>Reviews for <b>  Car Dealership</b> </h3>
+        <div class="container">
+            <div class="card-columns">
+                {% for review in reviews_list %}
+                    <div class="card">
+                        <img src="{{MEDIA_URL}}/emoji/{{review.sentiment}}.png" 
+                            alt="{{review.sentiment}} emoji" class="card-img-left" 
+                            width='10%'>
+                        <div class="card-body bg-light">
+                            <label class="card-title"><b>{{review.car_make}}</b></label>
+                            <label class="card-title"><b>{{review.car_model}}</b></label> <br>
+                            <label class="card-title"><b>{{review.car_year}}</b></label> <br>
+                            <!--<label class="card-title">{{review.purchase_date}}</label>-->
+                            <label class="card-text">{{review.review}}</label>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
+    {% else %}    
+        <h4> No reviews added yet for this Dealership !</h4>
     {% endif %}
     </body>
 
