@@ -18,7 +18,7 @@
 
     <!-- Add reviews as cards -->
     {% if has_review %}
-        <h3>Reviews for <b>  Car Dealership</b> </h3>
+        <h3>Reviews for <b>{{dealer_name}} Car Dealership</b> </h3>
         <div class="container">
             <div class="card-columns">
                 {% for review in reviews_list %}
