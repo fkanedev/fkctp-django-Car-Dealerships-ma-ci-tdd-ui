@@ -59,9 +59,9 @@ def main(param_dict):
         try:
             record = service.post_document(db=DB_NAME, document=PARAM_REVIEW).get_result()
             result = record
-            if len(result) == 0:
+            if result['ok'] != 'true':
                 code = 404
-                message = f"The dealership with id key {PARAM_DEALER_ID} does not exist."
+                message = f"Failed to add new review !"
         except ApiException as ae:
             code = 500
             message = "Something went wrong on the server."
