@@ -42,10 +42,12 @@ class CarModel(models.Model):
     SEDAN = 'sedan'
     SUV = 'suv'
     WAGON = 'wagon'
+    COUPE = 'coupe'
     TYPE_CHOICES = [
         (SEDAN, 'Sedan'),
         (SUV, 'Suv'),
-        (WAGON, 'Wagon')
+        (WAGON, 'Wagon'),
+        (COUPE, 'Coupe')
     ]
     type = models.CharField(
         null=False,
