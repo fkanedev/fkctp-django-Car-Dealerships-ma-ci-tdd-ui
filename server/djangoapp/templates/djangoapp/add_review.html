@@ -12,5 +12,45 @@
 </head>
     <body>
     <!--Add review form here -->
+    <div class="container"> <!--Style root div with .container class -->
+
+    <form action="{% url 'djangoapp:add_review' dealer_id %}" method="post">
+        
+            {% csrf_token %}
+            <h1>Add a review about Car Dealership</h1>
+            <hr>
+            <div class="form-group"> <!--Style second div with .form-group class -->
+                <label for="content"><b>Enter the review content: </b></label>
+                <textarea class="form-control" name="content" id="content" rows="2" 
+                    placeholder="This is a great car dealer" required></textarea>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" name="purchasecheck"
+                            class="form-check-input" id="purchasecheck">
+                            Has purchased the car from Car Dealership ?
+                    </label>
+                </div>
+                <label for="car"><b>Select your car (model-make-year):</b></label>
+                <select name="car" id="car" class="form-select" required>
+                    {% for car in cars %}
+                        <option value="{{car.id}}">{{car.model_name}}-{{car.make.make_name}}-{{car.year}}</option>
+                    {% endfor %}
+                </select>
+                <label for="purchasedate"><b>Select Your Purchase Date:</b></label>
+                <input type="text" class="date-own form-control" name="purchasedate" 
+                    id="purchasedate" >
+                
+                    <button class="btn btn-primary me-3" type="submit">Submit</button>
+                    <a class="btn btn-danger" href="{% url 'djangoapp:dealer_details' dealer_id %}" >cancel</a>
+                
+                
+            </div>
+        
+    </form>
+</div>
     </body>
+
+    <script type="text/javascript">
+        $('.date-own').datepicker({format: 'mm/dd/yyyy'});
+    </script>
 </html>
