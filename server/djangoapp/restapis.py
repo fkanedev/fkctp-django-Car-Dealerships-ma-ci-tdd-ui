@@ -15,7 +15,7 @@ WATSON_API_KEY = "PxYfd9NcYJLT-fp3tDgcX3-tk1TQNAWEflZa_jtQTeRw"
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
 #                                     auth=HTTPBasicAuth('apikey', api_key))
-async def get_request(url, has_apikey=False, **kwargs):
+def get_request(url, has_apikey=False, **kwargs):
     
     json_data = {}
     try:
@@ -29,7 +29,7 @@ async def get_request(url, has_apikey=False, **kwargs):
             params["features"] = kwargs["features"]
             params["return_analyzed_text"] = kwargs["return_analyzed_text"]
             # Basic authentication GET
-            response = await requests.get(url, headers={'Content-Type':'application/json'}, 
+            response = requests.get(url, headers={'Content-Type':'application/json'}, 
                                 auth=HTTPBasicAuth('apikey', api_key), params=params)
             json_data = json.loads(response.text)
         else:
@@ -68,11 +68,11 @@ def post_request(url, json_payload, **kwargs):
 # def get_dealers_from_cf(url, **kwargs):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a CarDealer object list
-async def get_dealers_from_cf(url, **kwargs):
+def get_dealers_from_cf(url, **kwargs):
 
     results = []
     # Call get_request with a URL parameter
-    json_result = await get_request(url, **kwargs)
+    json_result = get_request(url, **kwargs)
     if json_result:
         # Get the row list in JSON as dealers
         dealers = json_result['dealerships']
@@ -95,10 +95,10 @@ async def get_dealers_from_cf(url, **kwargs):
 # def get_dealer_by_id(url, dealerId):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a CarDealer object list
-async def get_dealer_by_id(url, dealerId):
+def get_dealer_by_id(url, dealerId):
     results = []
     # Call get_request with a URL parameter
-    json_result = await get_request(url, dealerId=dealerId)
+    json_result = get_request(url, dealerId=dealerId)
     if json_result:
         # Get the row list in JSON as dealers
         dealers = json_result["dealerships"]
@@ -121,10 +121,10 @@ async def get_dealer_by_id(url, dealerId):
 # def get_dealer_by_state(url, state):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a CarDealer object list
-async def get_dealer_by_state(url, state):
+def get_dealer_by_state(url, state):
     results = []
     # Call get_request with a URL parameter
-    json_result = await get_request(url, state=state)
+    json_result = get_request(url, state=state)
     if json_result:
         # Get the row list in JSON as dealers
         dealers = json_result["rows"]
@@ -147,10 +147,10 @@ async def get_dealer_by_state(url, state):
 # def get_dealer_reviews_from_cf(url, dealerId):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a DealerReview object list
-async def get_dealer_reviews_from_cf(url, dealerId):
+def get_dealer_reviews_from_cf(url, dealerId):
     results = []
     # Call get_request with a URL parameter
-    json_result = await get_request(url, dealerId=dealerId)
+    json_result = get_request(url, dealerId=dealerId)
     if json_result:
         # Get the row list in JSON as reviews
         reviews = json_result["reviews"]
@@ -165,7 +165,7 @@ async def get_dealer_reviews_from_cf(url, dealerId):
                 if k in review_doc.keys():
                     params[k] = review_doc[k]
             
-            sentiment_label = await analyze_review_sentiments(review_doc["review"])
+            sentiment_label = analyze_review_sentiments(review_doc["review"])
             params["sentiment"] = sentiment_label
 
             review_obj = DealerReview(**params)
@@ -176,7 +176,7 @@ async def get_dealer_reviews_from_cf(url, dealerId):
 # def analyze_review_sentiments(text):
 # - Call get_request() with specified arguments
 # - Get the returned sentiment label such as Positive or Negative
-async def analyze_review_sentiments(text):
+def analyze_review_sentiments(text):
     url = WATSON_URL + "/v1/analyze"
     params = dict()
     params["apikey"] = WATSON_API_KEY
@@ -187,7 +187,7 @@ async def analyze_review_sentiments(text):
     params["sentiment.document"] = "true"
     params["return_analyzed_text"] = True
     
-    result = await get_request(url=url, has_apikey=True, **params)
+    result = get_request(url=url, has_apikey=True, **params)
     label = result["sentiment"]["document"]["label"]
 
     return label

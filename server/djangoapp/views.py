@@ -107,31 +107,31 @@ POST_REVIEW_URL = "https://eu-gb.functions.appdomain.cloud/api/v1/web/55d8a43f-0
 
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
-async def get_dealerships(request):
+def get_dealerships(request):
     context = {}
     
     if request.method == "GET":
         # Get dealers from Cloud Functions
-        dealerships = await get_dealers_from_cf(GET_DEALERS_URL)
+        dealerships = get_dealers_from_cf(GET_DEALERS_URL)
         context['dealerships_list'] = dealerships
 
         return render(request, 'djangoapp/index.html', context)
 
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
-async def get_dealer_details(request, dealer_id):
+def get_dealer_details(request, dealer_id):
     context = {}
     has_review = False
     dealer_name = ""
 
     if request.method == "GET":
         # Get dealership
-        response = await get_dealer_by_id(GET_DEALERS_URL, dealerId=dealer_id) 
+        response = get_dealer_by_id(GET_DEALERS_URL, dealerId=dealer_id) 
         if len(response) != 0:
             dealer_obj = response[0]
             dealer_name = dealer_obj.full_name
         # Get reviews for the dealership with this dealer_id
-        reviews = await get_dealer_reviews_from_cf(GET_REVIEWS_URL, dealerId=dealer_id)
+        reviews = get_dealer_reviews_from_cf(GET_REVIEWS_URL, dealerId=dealer_id)
         if len(reviews) != 0:
             has_review = True
         context['dealer_id'] = dealer_id
@@ -144,12 +144,12 @@ async def get_dealer_details(request, dealer_id):
 
 
 # Create a `add_review` view to submit a review
-async def add_review(request, dealer_id):
+def add_review(request, dealer_id):
     context = {}
 
     if request.method == "GET":
         # Get cars for this dealership
-        cars_dealer_list = await CarModel.objects.filter(dealer_id=dealer_id)
+        cars_dealer_list = CarModel.objects.filter(dealer_id=dealer_id)
         context['dealer_id'] = dealer_id
         context['cars'] = cars_dealer_list
         #print(f"cars_dealer_list: {cars_dealer_list}")
@@ -163,7 +163,7 @@ async def add_review(request, dealer_id):
         purchased_car_id = request.POST['car']
         purchase_date = request.POST['purchasedate']
         
-        car = await get_object_or_404(CarModel, pk=purchased_car_id)
+        car = get_object_or_404(CarModel, pk=purchased_car_id)
         
         if request.user.is_authenticated:
             
@@ -182,7 +182,7 @@ async def add_review(request, dealer_id):
                 "review": review
             }
 
-            response = await post_request(url=POST_REVIEW_URL, json_payload=json_payload, dealerId=dealer_id)
+            response = post_request(url=POST_REVIEW_URL, json_payload=json_payload, dealerId=dealer_id)
             
             if response.status_code == 200:
                 success_add_review = True 
