@@ -1,14 +1,30 @@
+#
+#
+# main() will be run when you invoke this action
+#
+# @param Cloud Functions actions accept a single parameter, which must be a JSON object.
+#
+# @return The output of this action, which must be a JSON object.
+#
+#
+
 """IBM Cloud Function that gets all reviews for a dealership
 
 Returns:
     List: List of reviews for the given dealership
 """
-from ibmcloudant.client import Cloudant
-from ibmcloudant.error import CloudantException
+from ibm_cloud_sdk_core import ApiException
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibmcloudant.cloudant_v1 import CloudantV1, Document
 import requests
+#from requests import ConnectionError, ReadTimeout, RequestException, ValueError
+#from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
+IAM_API_KEY = "nM2froRZmoB_NIbhHyFNaqZIecGlT8PTxbh5henG5UYS"
+CLOUDANT_URL = "https://e844e385-41bd-4c23-981f-f0dc16b466aa-bluemix.cloudantnosqldb.appdomain.cloud"
 
 
-def main(param_dict, request):
+def main(param_dict):
     """Main Function
 
     Args:
@@ -17,36 +33,50 @@ def main(param_dict, request):
     Returns:
         _type_: _description_ TODO
     """
-
+    
+    DB_NAME = "reviews";
+    code = 200
+    message = "Request success."
+    record = {}
+    result = {}
+    
     try:
-        client = Cloudant.iam(
-            account_name=param_dict["COUCH_USERNAME"],
-            api_key=param_dict["IAM_API_KEY"],
-            connect=True,
-        )
-        #print(f"Databases: {client.all_dbs()}")
-        reviews_db = client['reviews']
-        user_review = request.POST['user_review']
-        review_exist = user_review['id'] in reviews_db
-        message = ""
-        if review_exist:
-            selector = {'id': {'$eq': user_review['id']}}
-            doc = reviews_db.get_query_result(selector)
-            doc['review'] = user_review['review']
-            message = "User's review updated."
+        
+        authenticator = IAMAuthenticator(IAM_API_KEY)
+        service = CloudantV1(authenticator=authenticator)
+        service.set_service_url(CLOUDANT_URL)
+        PARAM_REVIEW = {}
+        if param_dict:
+            PARAM_REVIEW = param_dict['review']
+        
+    except ApiException as ae:
+        code = 500
+        message = "unable to connect."
+        result = { "error": ae.message }
 
-        else:
-            doc = reviews_db.create_document(user_review)
-            message = "User's review created."
+    
+    if PARAM_REVIEW:
+        try:
+            record = service.post_document(db=DB_NAME, document=PARAM_REVIEW).get_result()
+            result = record
+            if len(result) == 0:
+                code = 404
+                message = f"The dealership with id key {PARAM_DEALER_ID} does not exist."
+        except ApiException as ae:
+            code = 500
+            message = "Something went wrong on the server."
+            result = { "error": ae.message }
+    else:
+        code = 400
+        message = "The request body is empty. No review added."
+  
+    response = {
+        "statusCode": code,
+        "message" : message,
+        "headers": { 'Content-Type': 'application/json' },
+        "body": result
+    }
+    
+    return response
 
-    except CloudantException as cloudant_exception:
-        print("unable to connect")
-        return {"error": cloudant_exception}
-    except (requests.exceptions.RequestException, ConnectionResetError) as err:
-        print("connection error")
-        return {"error": err}
-
-    return {
-            "body": message
-            }
 
