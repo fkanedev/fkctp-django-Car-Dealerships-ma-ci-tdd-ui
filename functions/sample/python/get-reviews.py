@@ -15,7 +15,7 @@ Returns:
 """
 from ibm_cloud_sdk_core import ApiException
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-#from ibmcloudant.cloudant_v1 import CloudantV1, Document
+from ibmcloudant.cloudant_v1 import CloudantV1 #, Document
 #import requests
 #from requests import ConnectionError, ReadTimeout, RequestException, ValueError
 #from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
@@ -41,7 +41,6 @@ def main(param_dict):
     result = {}
 
     try:
-        
         authenticator = IAMAuthenticator(IAM_API_KEY)
         service = CloudantV1(authenticator=authenticator)
         service.set_service_url(CLOUDANT_URL)
@@ -86,6 +85,3 @@ def main(param_dict):
     }
 
     return response
-
-
-
