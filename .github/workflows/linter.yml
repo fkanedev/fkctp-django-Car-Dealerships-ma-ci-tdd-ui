@@ -44,7 +44,7 @@ jobs: # list of things to do
           pip install pylint
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint with Pylint
-        run: pylint *.py --disable=C0301,R0801,C0103
+        run: pylint *.py --disable=C0301,R0801,C0103 # Disable checkers: line-too-long, invalid-name, duplicate-code
         working-directory: functions/sample/python
 
   lint_django_server:
