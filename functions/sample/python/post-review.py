@@ -15,8 +15,8 @@ Returns:
 """
 from ibm_cloud_sdk_core import ApiException
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-from ibmcloudant.cloudant_v1 import CloudantV1, Document
-import requests
+from ibmcloudant.cloudant_v1 import CloudantV1 #, Document
+#import requests
 #from requests import ConnectionError, ReadTimeout, RequestException, ValueError
 #from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
@@ -33,50 +33,46 @@ def main(param_dict):
     Returns:
         _type_: _description_ TODO
     """
-    
-    DB_NAME = "reviews";
+
+    db_name = "reviews"
     code = 200
     message = "Request success."
     record = {}
     result = {}
-    
+
     try:
-        
         authenticator = IAMAuthenticator(IAM_API_KEY)
         service = CloudantV1(authenticator=authenticator)
         service.set_service_url(CLOUDANT_URL)
-        PARAM_REVIEW = {}
+        param_review = {}
         if param_dict:
-            PARAM_REVIEW = param_dict['review']
-        
-    except ApiException as ae:
+            param_review = param_dict['review']
+    
+    except ApiException as error:
         code = 500
         message = "unable to connect."
-        result = { "error": ae.message }
+        result = { "error": error.message }
 
-    
-    if PARAM_REVIEW:
+    if param_review:
         try:
-            record = service.post_document(db=DB_NAME, document=PARAM_REVIEW).get_result()
+            record = service.post_document(db=DB_NAME, document=param_review).get_result()
             result = record
             if result['ok'] != 'true':
                 code = 404
                 message = f"Failed to add new review !"
-        except ApiException as ae:
+        except ApiException as error:
             code = 500
             message = "Something went wrong on the server."
-            result = { "error": ae.message }
+            result = { "error": error.message }
     else:
         code = 400
         message = "The request body is empty. No review added."
-  
+
     response = {
         "statusCode": code,
         "message" : message,
         "headers": { 'Content-Type': 'application/json' },
         "body": result
     }
-    
+
     return response
-
-
