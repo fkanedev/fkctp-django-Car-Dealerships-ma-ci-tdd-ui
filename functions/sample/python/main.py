@@ -86,12 +86,12 @@ def main(param_dict):
 #        reviews_db = client['reviews']
 #        selector = {'_id': {'$eq': param_dict["dealerId"]}}
 #        docs = reviews_db.get_query_result(selector)
-
-    except CloudantException as cloudant_exception:
-        print("unable to connect")
-        return {"error": cloudant_exception}
-    except (requests.exceptions.RequestException, ConnectionResetError) as err:
-        print("connection error")
-        return {"error": err}
-
-    return {"docs": docs}
+#
+#    except CloudantException as cloudant_exception:
+#        print("unable to connect")
+#        return {"error": cloudant_exception}
+#    except (requests.exceptions.RequestException, ConnectionResetError) as err:
+#        print("connection error")
+#        return {"error": err}
+#
+#    return {"docs": docs}
