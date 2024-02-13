@@ -7,7 +7,7 @@ env:
   IBM_CLOUD_REGION: us-south
   IBM_CLOUD_GROUP: default
   IBM_CLOUD_SPACE: dev
-  IBM_CLOUD_ORG:
+  #IBM_CLOUD_ORG:
   MANIFEST_NAME: manifest.yml
   IBM_CLOUD_API: ${{secrets.IBM_CLOUD_API_KEY}}
 
@@ -35,12 +35,15 @@ jobs:
         run: |
           ibmcloud login --apikey "$IBM_CLOUD_API" -r "$IBM_CLOUD_REGION" -g "$IBM_CLOUD_GROUP"
         shell: bash
-      - name: Target CF
-        run: ibmcloud target --cf-api https://api.$IBM_CLOUD_REGION.cf.cloud.ibm.com -r $IBM_CLOUD_REGION -o $IBM_CLOUD_ORG -s $IBM_CLOUD_SPACE
+      #- name: Target CF
+       # run: ibmcloud target --cf-api https://api.$IBM_CLOUD_REGION.cf.cloud.ibm.com -r $IBM_CLOUD_REGION  -s $IBM_CLOUD_SPACE
+        #shell: bash ibmcloud ce project create --name sample
+      - name: Creating project 
+        run: ibmcloud ce project create --name djangoapp
         shell: bash
       - name: List all applications
-        run: ibmcloud cf apps
+        run: ibmcloud ce app list
         shell: bash
-      - name: Deploy manifest file
-        run: ibmcloud cf push -f ./$MANIFEST_NAME
+      - name: Deploying application
+        run: ibmcloud ce app create --name djangoapp --build-source . --strategy buildpacks #ibmcloud cf push -f ./$MANIFEST_NAME
         shell: bash
