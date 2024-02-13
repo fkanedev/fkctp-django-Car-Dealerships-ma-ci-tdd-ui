@@ -47,7 +47,7 @@ def main(param_dict):
         param_review = {}
         if param_dict:
             param_review = param_dict['review']
-    
+
     except ApiException as error:
         code = 500
         message = "unable to connect."
@@ -55,11 +55,11 @@ def main(param_dict):
 
     if param_review:
         try:
-            record = service.post_document(db=DB_NAME, document=param_review).get_result()
+            record = service.post_document(db=db_name, document=param_review).get_result()
             result = record
             if result['ok'] != 'true':
                 code = 404
-                message = f"Failed to add new review !"
+                message = "Failed to add new review !"
         except ApiException as error:
             code = 500
             message = "Something went wrong on the server."
