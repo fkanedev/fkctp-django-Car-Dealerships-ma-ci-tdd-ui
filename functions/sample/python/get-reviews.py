@@ -51,7 +51,7 @@ def main(param_dict):
         
     except ApiException as ae:
         code = 500
-        message = "unable to connect."
+        message = "unable to connect!"
         result = { "error": ae.message }
 
     
