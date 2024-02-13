@@ -28,8 +28,8 @@ jobs:
           ibmcloud --version
           ibmcloud config --check-version=false
         shell: bash
-      - name: Install CF plugin
-        run: ibmcloud cf install -f
+      - name: Install Code Engine plugin
+        run: ibmcloud plugin install code-engine
         shell: bash
       - name: Log into IBM Cloud
         run: |
