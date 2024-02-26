@@ -34,3 +34,16 @@ You must complete all the labs to successfully complete the project.
 **Containerize your application**
 1. Add deployment artifacts to your application
 2. Deploy your application
+
+# SOURCES
+
+**Github : [ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone)**
+## Coursera links :
+
+**Course : [Full Stack Application Development Capstone Project](https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone/home/week/1)**
+
+**Module : [Week 1 : Introduction to Capstone Project](https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone/supplement/5wtPl/introduction-to-capstone-project)**
+
+**Specialization : [IBM Full Stack Software Developer Professional Certificate]()**
+
+
