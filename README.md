@@ -1,49 +1,103 @@
-# Final Project Template
+![Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg)
+![Built with Django](https://img.shields.io/badge/Built%20with-Django-brightgreen.svg)
+![Authentication - Django](https://img.shields.io/badge/Authentication-Django-blue.svg)
+![Session Management - Django](https://img.shields.io/badge/Session%20Management-Django-orange.svg)
+![Cloud Platforms - IBM Cloud](https://img.shields.io/badge/Cloud%20Platforms-IBM%20Cloud-blue.svg)
+![CI/CD - GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-brightgreen.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
-The final project for this course has several steps that you must complete. 
-To give you an overview of the whole project, all the high-level steps are listed below. 
-The project is then divided into several smaller labs that give the detailed instructions for each step. 
-You must complete all the labs to successfully complete the project.
+# Car Management Application
+This project involves developing a web application using Django for managing car information, vehicle authentication, user roles, and a service feature for booking cars. It demonstrates the practical application of Django in a real-world scenario. It's part of my training in the [IBM Full Stack Software Developer Professional Certificate](https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer) utilizing a [template](https://github.com/ibm-developer-skills-network/final-cloud-app-with-database) provided by IBM Developer Skills Network.
 
-## Project Breakdown
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Technologies Used](#technologies-used)
+3. [Installation and Configuration](#installation-and-configuration)
+4. [Usage](#usage)
+5. [Development](#development)
+   - Project Structure
+   - Templates
+   - Views
+   - Models
+6. [CI/CD](#ci-cd)
+7. [Deployment](#deployment)
+8. [Sources](#sources)
+9. [License](#license)
+10. [Contact](#contact)
 
-**Prework: Sign up for IBM Cloud account and create a Watson Natural language Understanding service**
-1. Create an IBM cloud account if you don't have one already.
-2. Create an instance of the Natural Language Understanding (NLU) service.
+## 1. Introduction <a name="introduction"></a>
 
-**Fork the project Github repository with a project then build and deploy the template project**
-1. Fork the repository in your account
-2. Clone the repository in the theia lab environment
-3. Create static pages to finish the user stories
-4. Deploy the application on IBM Cloud
+### Project Objective
+The primary objective of this project is to develop a comprehensive car management system using the Django framework. The system is designed to facilitate dealership listings, customer reviews, dealer information, and user interactions through a user-friendly web interface, while ensuring robust user authentication and role-based access control.
 
-**Add user management to the application**
-1. Implement user management using the Django user authentication system.
-2. Set up continuous integration and delivery
+### Key Features
+- **Dealership Management**: Allows administrators to add, update, and manage dealership listings and details.
+- **Vehicle Reviews**: Enables customers to add reviews and ratings for vehicles and dealerships.
+- **Dealer Details**: Provides comprehensive information about each dealer, including contact details and location.
+- **User Interaction**: Includes features for user registration, authentication, and personalized user experiences.
 
-**Implement backend services**
-1. Create cloud functions to manage dealers and reviews
-2. Create Django models and views to manage car model and car make
-3. Create Django proxy services and views to integrate dealers, reviews, and cars together
- 
-**Add dynamic pages with Django templates**
-1. Create a page that shows all the dealers
-2. Create a page that show reviews for a selected dealer
-3. Create a page that let's the end user add a review for a selected dealer
+## 2. Technologies Used <a name="technologies-used"></a>
 
-**Containerize your application**
-1. Add deployment artifacts to your application
-2. Deploy your application
+### Programming Languages
+- **Python**: The core language used for backend development with Django.
 
-# SOURCES
+### Tools and Frameworks
+- **Django**: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+- **SQLite**: A lightweight, disk-based database used for local development.
 
-**Github : [ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone)**
-## Coursera links :
+### Cloud Platforms
+- **IBM Cloud**: Used for hosting the application, database management with Cloudant, and deployment using Cloud Foundry.
+  
+## 3. Installation and Configuration <a name="installation-and-configuration"></a>
 
-**Course : [Full Stack Application Development Capstone Project](https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone/home/week/1)**
+### Prerequisites
+Before setting up the project, ensure that you have the following installed on your local machine:
+- **Python 3.x**: The latest version of Python.
+- **Pip**: Python's package installer.
 
-**Module : [Week 1 : Introduction to Capstone Project](https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone/supplement/5wtPl/introduction-to-capstone-project)**
+### Installation Steps
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/fkanedev/fkctp-tmp-car
+   cd fkctp-tmp-car
+   ```
+2. Install the dependencies:
+  ```bash
+   pip install -r requirements.txt
+   ```
+### Environment Setup
+- Use manage.py for server management operations.
+## 4. Usage <a name="usage"></a>
+### Running the Server
+To start the development server, navigate to the project directory and run:
+   ```bash
+   python manage.py runserver
+   ```
+This command will start the server at http://127.0.0.1:8000/.
 
-**Specialization : [IBM Full Stack Software Developer Professional Certificate]()**
+### Accessing the Application
+Once the server is running, open your web browser and go to http://127.0.0.1:8000/ to access the application. You will be able to register as a new user, log in, and explore the car management features.
 
+## 5. Development <a name="development"></a>
+### Project Structure 
+- server/djangobackend/: The main Django project directory containing settings and configurations.
+- server/djangoapp/: Contains the core application responsible for car and dealerships related functionalities.
+- server/static/: Holds static files such as CSS and JavaScript.
+
+### Templates
+The project uses Django's templating system for rendering HTML. The main templates include:
+
+
+These templates are located in onlinecourse/templates/onlinecourse/ and leverage Django template tags and Bootstrap for styling and layout.
+
+### Views
+View functions in onlinecourse/views.py handle HTTP requests and render appropriate templates. Key view functions include:
+
+
+These views utilize Django's powerful request handling and template rendering capabilities to dynamically generate content based on user interactions and database queries.
+
+### Models
+Django models in onlinecourse/models.py define the structure of the database tables. Key models include:
+
+The models are defined using Django's ORM, which provides a high-level abstraction for database operations, making it easy to create, retrieve, update, and delete records.
 
