@@ -38,13 +38,13 @@ The primary objective of this project is to develop a comprehensive car manageme
 - **User Interaction**: Includes features for user registration, authentication, and personalized user experiences.
 
 ## 2. Architecture <a name="architecture"></a>
-*Note: The architectural solution, diagram and design guidelines are provided by the training course. See the [Sources](#sources) section for more details.*
+*Note: In this section, the architectural solution, diagram and design guidelines are provided by the training course. See the [Sources](#sources) section for more details.*
    - Key Components
       - **Django application** : The user interacts with the Django application through a web browser. 
       - **SQLite database** : The Django application handles the user authentication using the SQLite database as the persistance layer. The SQLite database also stores the Car Make and the Car Model data.
       - **Cloudant** : The dealerships and the reviews are stored in Cloudant, a NoSQL document based database.
       - **IBM Cloud functions** : Are used to interface with the Cloudant database to get dealerships, get reviews and post reviews.
-      - **IBM Watson NLU service** : Watson NLU (Natural Language Understanding) service is used  to analyze reviews sentiment/tone. 
+      - **IBM Watson NLU service** : Watson NLU (Natural Language Understanding) service is used  to analyze sentiment/tone  review comments posted by users. 
       - **Proxy services** : The Django application talks to the IBM Cloud Functions and Watson NLU service via a set or proxy services.
  
    - Architectural Diagram
@@ -59,14 +59,16 @@ The primary objective of this project is to develop a comprehensive car manageme
 - **SQLite**: A lightweight, disk-based database used for local development.
 
 ### Cloud Platforms
-- **IBM Cloud**: Used for hosting the application, database management with Cloudant, and deployment using Cloud Foundry.
+- **IBM Cloud**: Used for cloud functions (serverless computing), database management with Cloudant, and deployment using Cloud Foundry.
   
 ## 3. Installation and Configuration <a name="installation-and-configuration"></a>
 
 ### Prerequisites
-Before setting up the project, ensure that you have the following installed on your local machine:
-- **Python 3.x**: The latest version of Python.
-- **Pip**: Python's package installer.
+Before setting up the project, 
+- Ensure that you have the following installed on your local machine:
+   - **Python 3.x**: The latest version of Python.
+   - **Pip**: Python's package installer.
+- Sign up for IBM Cloud Lite account and create a Watson Natural Language Understanding service.
 
 ### Installation Steps
 1. **Clone the repository**:
@@ -96,6 +98,10 @@ Once the server is running, open your web browser and go to http://127.0.0.1:800
 - server/djangobackend/: The main Django project directory containing settings and configurations.
 - server/djangoapp/: Contains the core application responsible for car and dealerships related functionalities.
 - server/static/: Holds static files such as CSS and JavaScript.
+- cloudant/: Contains the database configurations and scripts to create the necessary databases in the remote Cloudant repository.
+- functions/: Contains the functions to be deployed on IBM Cloud Functions, including :
+   - Node.js functions for retrieving dealership information
+   - Python functions for retrieving and posting reviews.
 
 ### Templates
 The project uses Django's templating system for rendering HTML. The main templates include:
@@ -113,4 +119,29 @@ These views utilize Django's powerful request handling and template rendering ca
 Django models in onlinecourse/models.py define the structure of the database tables. Key models include:
 
 The models are defined using Django's ORM, which provides a high-level abstraction for database operations, making it easy to create, retrieve, update, and delete records.
+
+
+## 6. Sources <a name="sources"></a>
+
+- **Template: [IBM Developer Skills Network - Cloud App Development Capstone template](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone)**
+
+- **Useful links**:
+  - **[Full Stack Application Development Capstone Project](https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone/home/week/1)**
+  - **[IBM Full Stack Software Developer Professional Certificate](https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer)**
+
+## 7. License <a name="license"></a>
+
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
+
+## 8. Contact <a name="contact"></a>
+
+### Contact Information :
+
+- Send me email : **fkanecloudtech@gmail.com**
+- Connect with me on [LinkedIn](https://www.linkedin.com/in/your-profile/)
+- Visit my [portfolio](https://yourname.github.io) to explore my projects and services.
+
+### Contribution and Support :
+
+Contributions are welcome. Please refer to the [CONTRIBUTING](/CONTRIBUTING) file for more information on how to contribute.
 
