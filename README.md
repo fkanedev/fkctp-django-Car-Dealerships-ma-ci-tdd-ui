@@ -104,10 +104,15 @@ Once the server is running, open your web browser and go to http://127.0.0.1:800
    - Python functions for retrieving and posting reviews.
 
 ### Templates
-The project uses Django's templating system for rendering HTML. The main templates include:
+The project uses Django's templating system for rendering HTML. Templates are located in [server/djangoapp/templates/djangoapp](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/tree/master/server/djangoapp/templates/djangoapp) include:
+- **index.html** : Presents the dealerships list in a Bootstrap table, with attributes (ID, Dealer Name, City, Address, Zip, State) for each dealer.
+- **about.html** and **contact.html** : Refer to company's (Cars Dealership) presentation.
+- **add_review.html** : 
+- **dealer_details.html** : 
+- **registration.html** : 
+- **navbar.html** :
 
-
-These templates are located in onlinecourse/templates/onlinecourse/ and leverage Django template tags and Bootstrap for styling and layout.
+These templates leverage Django template tags and Bootstrap for styling and layout.
 
 ### Views
 View functions in onlinecourse/views.py handle HTTP requests and render appropriate templates. Key view functions include:
