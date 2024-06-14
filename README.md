@@ -105,26 +105,38 @@ Once the server is running, open your web browser and go to http://127.0.0.1:800
 
 ### Templates
 The project uses Django's templating system for rendering HTML. Templates are located in [server/djangoapp/templates/djangoapp](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/tree/master/server/djangoapp/templates/djangoapp) include:
-- **index.html** : Presents the dealerships list in a Bootstrap table, with attributes (ID, Dealer Name, City, Address, Zip, State) for each dealer.
-- **about.html** and **contact.html** : Refer to company's (Cars Dealership) presentation.
-- **add_review.html** : 
-- **dealer_details.html** : 
-- **registration.html** : 
-- **navbar.html** :
-
+- **index.html** : Presents the dealerships (branches) list in a Bootstrap table, with attributes *(ID, Dealer Name, City, Address, Zip, State)* for each dealer.
+- **navbar.html** : Displays the navigation bar.
+- **registration.html** : Displays a "Sign Up" form for new users.
+- **about.html** and **contact.html** : Refer to national company's (Cars Dealership) presentation.
+- **dealer_details.html** : A detailed dealer page to show all reviews for the dealer. each review is displayed as a Bootstrap card, containing an (positve, neutral or negative) emoji according to the result of review's sentiment/tone analysis. A link to add reviews will be available for authenticated user.    
+- **add_review.html** : A review submission page to allow user create a review for a dealer.
+ 
 These templates leverage Django template tags and Bootstrap for styling and layout.
 
 ### Views
-View functions in onlinecourse/views.py handle HTTP requests and render appropriate templates. Key view functions include:
+View functions in `server/djangoapp/views.py` handle HTTP requests and render appropriate templates. Key view functions include:
 
+- **about**: Renders a static about page.
+- **contact**: Renders a static contact page.
+- **login_request**: Handles user login.
+- **logout_request**: Handles user logout.
+- **registration_request**: Handles user registration.
+- **get_dealerships**: Renders the index page with a list of dealerships retrieved from IBM Cloud Functions.
+- **get_dealer_details**: Renders the reviews of a specific dealer, including dealer information and reviews retrieved from IBM Cloud Functions.
+- **add_review**: Handles the submission of a new review for a dealer.
 
 These views utilize Django's powerful request handling and template rendering capabilities to dynamically generate content based on user interactions and database queries.
 
 ### Models
-Django models in onlinecourse/models.py define the structure of the database tables. Key models include:
+Django models in `server/djangoapp/models.py` define the structure of the database tables. Key models include:
 
-The models are defined using Django's ORM, which provides a high-level abstraction for database operations, making it easy to create, retrieve, update, and delete records.
+- **CarMake**: Represents a car make with fields for name and description.
+- **CarModel**: Represents a car model with a many-to-one relationship to CarMake. Fields include name, dealer ID, type, and year.
+- **CarDealer**: A plain Python class to hold dealer data, including address, city, full name, latitude, longitude, short name, state, and zip.
+- **DealerReview**: A plain Python class to hold review data, including car make, car model, car year, dealership, review ID, reviewer name, purchase status, purchase date, review text, and sentiment.
 
+These models are defined using Django's ORM, providing a high-level abstraction for database operations, making it easy to create, retrieve, update, and delete records.
 
 ## 6. Sources <a name="sources"></a>
 
