@@ -11,19 +11,20 @@ This project involves developing a web application using Django for managing car
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Technologies Used](#technologies-used)
-3. [Installation and Configuration](#installation-and-configuration)
-4. [Usage](#usage)
-5. [Development](#development)
+2. [Architecture](#architecture)
+3. [Technologies Used](#technologies-used)
+4. [Installation and Configuration](#installation-and-configuration)
+5. [Usage](#usage)
+6. [Development](#development)
    - Project Structure
    - Templates
    - Views
    - Models
-6. [CI/CD](#ci-cd)
-7. [Deployment](#deployment)
-8. [Sources](#sources)
-9. [License](#license)
-10. [Contact](#contact)
+7. [CI/CD](#ci-cd)
+8. [Deployment](#deployment)
+9. [Sources](#sources)
+10. [License](#license)
+11. [Contact](#contact)
 
 ## 1. Introduction <a name="introduction"></a>
 
@@ -36,6 +37,18 @@ The primary objective of this project is to develop a comprehensive car manageme
 - **Dealer Details**: Provides comprehensive information about each dealer, including contact details and location.
 - **User Interaction**: Includes features for user registration, authentication, and personalized user experiences.
 
+## 2. Architecture <a name="architecture"></a>
+*Note: The architectural solution, diagram and design guidelines are provided by the training course. See the [Sources](#sources) section for more details.*
+   - Key Components
+      - **Django application** : The user interacts with the Django application through a web browser. 
+      - **SQLite database** : The Django application handles the user authentication using the SQLite database as the persistance layer. The SQLite database also stores the Car Make and the Car Model data.
+      - **Cloudant** : The dealerships and the reviews are stored in Cloudant, a NoSQL document based database.
+      - **IBM Cloud functions** : Are used to interface with the Cloudant database to get dealerships, get reviews and post reviews.
+      - **IBM Watson NLU service** : Watson NLU (Natural Language Understanding) service is used  to analyze reviews sentiment/tone. 
+      - **Proxy services** : The Django application talks to the IBM Cloud Functions and Watson NLU service via a set or proxy services.
+ 
+   - Architectural Diagram
+   
 ## 2. Technologies Used <a name="technologies-used"></a>
 
 ### Programming Languages
