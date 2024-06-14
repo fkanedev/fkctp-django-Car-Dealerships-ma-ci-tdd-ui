@@ -20,6 +20,7 @@ This project aims to develop a Django-based web application for comprehensive ca
    - Templates
    - Views
    - Models
+   - Proxy Services
 7. [CI/CD](#ci-cd)
 8. [Deployment](#deployment)
 9. [Sources](#sources)
