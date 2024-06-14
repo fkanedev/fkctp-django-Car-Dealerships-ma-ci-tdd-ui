@@ -138,6 +138,20 @@ Django models in `server/djangoapp/models.py` define the structure of the databa
 
 These models are defined using Django's ORM, providing a high-level abstraction for database operations, making it easy to create, retrieve, update, and delete records.
 
+### Proxy Services
+The file `server/djangoapp/restapis.py` contains functions that act as proxy services to interact with external APIs and services, facilitating data retrieval and analysis for the application. Key functions include:
+
+- **get_request**: Makes HTTP GET requests to specified URLs, optionally using API key authentication.
+- **post_request**: Makes HTTP POST requests to specified URLs with given JSON payloads.
+- **get_dealers_from_cf**: Retrieves a list of car dealerships from a cloud function and parses the JSON response into a list of `CarDealer` objects.
+- **get_dealer_by_id**: Retrieves a car dealership by its ID from a cloud function and parses the JSON response into a list of `CarDealer` objects.
+- **get_dealer_by_state**: Retrieves car dealerships by state from a cloud function and parses the JSON response into a list of `CarDealer` objects.
+- **get_dealer_reviews_from_cf**: Retrieves reviews for a specific dealership from a cloud function and parses the JSON response into a list of `DealerReview` objects.
+- **analyze_review_sentiments**: Analyzes the sentiment of a review using IBM Watson Natural Language Understanding (NLU) and returns the sentiment label (e.g., Positive, Negative).
+
+These proxy services enable seamless integration with external systems, providing essential data and insights for the application's functionality.
+
+
 ## 6. Sources <a name="sources"></a>
 
 - **Template: [IBM Developer Skills Network - Cloud App Development Capstone template](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone)**
