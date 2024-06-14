@@ -176,7 +176,7 @@ These CI/CD workflows help maintain high code quality and streamline the deploym
 To stay current with technological trends and ensure flexibility, containerizing the dealership application let us deploy it across multiple cloud providers. This approach enhances flexibility and prevents vendor lock-in, as all the big cloud providers have a way to host and manage containers. 
 
 - **Containerization with Docker**:
-  Use the below command to make [entrypoint.sh](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/entrypoint.sh) executable.
+  Use the below command to make [server/entrypoint.sh](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/entrypoint.sh) executable.
 
   ```bash
   chmod +x ./entrypoint.sh
@@ -192,7 +192,7 @@ To stay current with technological trends and ensure flexibility, containerizing
   ```
 
 - **Deployment with Kubernetes**:
-   Kubernetes is an open-source container orchestration platform (used by cloud providers) that automates the deployment, management, and scaling of applications. [deployment.yaml](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/deployment.yaml) file is used to create the deployment and the service.
+   Kubernetes is an open-source container orchestration platform (used by cloud providers) that automates the deployment, management, and scaling of applications. [server/deployment.yaml](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/deployment.yaml) file is used to create the deployment and the service.
 
   Create the deployment using the following command and your deployment file. 
 
