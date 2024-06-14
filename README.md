@@ -7,7 +7,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
 
 # Car Management Application
-This project involves developing a web application using Django for managing car information, vehicle authentication, user roles, and a service feature for booking cars. It demonstrates the practical application of Django in a real-world scenario. It's part of my training in the [IBM Full Stack Software Developer Professional Certificate](https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer) utilizing a [template](https://github.com/ibm-developer-skills-network/final-cloud-app-with-database) provided by IBM Developer Skills Network.
+This project aims to develop a Django-based web application for comprehensive cars dealership management, vehicle reviews and personalized user experiences. It demonstrates the practical application of Django in a real-world scenario. It's part of my training in the [IBM Full Stack Software Developer Professional Certificate](https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer) utilizing a [template](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone) provided by IBM Developer Skills Network.
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -34,6 +34,7 @@ The primary objective of this project is to develop a comprehensive car manageme
 ### Key Features
 - **Dealership Management**: Allows administrators to add, update, and manage dealership listings and details.
 - **Vehicle Reviews**: Enables customers to add reviews and ratings for vehicles and dealerships.
+- **Sentiment Analysis**: Utilizes natural language processing to analyze the tone and sentiment of user reviews.
 - **Dealer Details**: Provides comprehensive information about each dealer, including contact details and location.
 - **User Interaction**: Includes features for user registration, authentication, and personalized user experiences.
 
@@ -49,7 +50,7 @@ The primary objective of this project is to develop a comprehensive car manageme
  
    - Architectural Diagram
    
-## 2. Technologies Used <a name="technologies-used"></a>
+## 3. Technologies Used <a name="technologies-used"></a>
 
 ### Programming Languages
 - **Python**: The core language used for backend development with Django.
@@ -61,7 +62,7 @@ The primary objective of this project is to develop a comprehensive car manageme
 ### Cloud Platforms
 - **IBM Cloud**: Used for cloud functions (serverless computing), database management with Cloudant, and deployment using Cloud Foundry.
   
-## 3. Installation and Configuration <a name="installation-and-configuration"></a>
+## 4. Installation and Configuration <a name="installation-and-configuration"></a>
 
 ### Prerequisites
 Before setting up the project, 
@@ -82,7 +83,7 @@ Before setting up the project,
    ```
 ### Environment Setup
 - Use manage.py for server management operations.
-## 4. Usage <a name="usage"></a>
+## 5. Usage <a name="usage"></a>
 ### Running the Server
 To start the development server, navigate to the project directory and run:
    ```bash
@@ -93,7 +94,7 @@ This command will start the server at http://127.0.0.1:8000/.
 ### Accessing the Application
 Once the server is running, open your web browser and go to http://127.0.0.1:8000/ to access the application. You will be able to register as a new user, log in, and explore the car management features.
 
-## 5. Development <a name="development"></a>
+## 6. Development <a name="development"></a>
 ### Project Structure 
 - server/djangobackend/: The main Django project directory containing settings and configurations.
 - server/djangoapp/: Contains the core application responsible for car and dealerships related functionalities.
@@ -151,8 +152,61 @@ The file `server/djangoapp/restapis.py` contains functions that act as proxy ser
 
 These proxy services enable seamless integration with external systems, providing essential data and insights for the application's functionality.
 
+## 7. Continuous Integration and Continuous Delivery (CI/CD) <a name="ci-cd"></a>
+The `.github/workflows/` directory contains GitHub Actions workflows that automate various Continuous Integration and Continuous Deployment (CI/CD) processes for the project. These workflows ensure code quality, facilitate automated testing, and manage deployments. Key workflows include:
 
-## 6. Sources <a name="sources"></a>
+- **linter.yml**: Automates code linting to ensure code quality and adherence to coding standards.
+  - **Linting JavaScript Function**: Performs linting using npm.
+  - **Linting Python Function**: Lints Python files, disabling certain checkers for line length, invalid names, and duplicate code.
+  - **Linting Django Server**: Lints Django server Python files.
+
+- **push-cf.yml**: Automates the build and deployment process to IBM Cloud Foundry.
+  - **Setup, Build, Publish, and Deploy**:
+    - Runs on `ubuntu-latest`.
+    - Installs IBM CLI and Code Engine plugin.
+    - Logs into IBM Cloud using an API key stored in secrets.
+    - Creates a project in IBM Cloud Code Engine.
+    - Lists all applications in the project.
+    - Deploys the application using IBM Cloud Code Engine with buildpacks strategy.
+
+These CI/CD workflows help maintain high code quality and streamline the deployment process, ensuring that new changes are tested and deployed efficiently.
+
+## 8. Deployment <a name="deployment"></a>
+To stay current with technological trends and ensure flexibility, containerizing the dealership application let us deploy it across multiple cloud providers. This approach enhances flexibility and prevents vendor lock-in, as all the big cloud providers have a way to host and manage containers. 
+
+- **Containerization with Docker**:
+  Use the below command to make [entrypoint.sh](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/entrypoint.sh) executable.
+
+  ```bash
+  chmod +x ./entrypoint.sh
+  ```
+  build your image and push to IBM Cloud Image Registry (ICR). Replace or export your ibmcloud namespace in *$MY_NAMESPACE*.
+
+  ```bash
+  docker build -t us.icr.io/$MY_NAMESPACE/dealership .
+  ```
+
+  ```bash
+  docker push us.icr.io/$MY_NAMESPACE/dealership
+  ```
+
+- **Deployment with Kubernetes**:
+   Kubernetes is an open-source container orchestration platform (used by cloud providers) that automates the deployment, management, and scaling of applications. [deployment.yaml](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/deployment.yaml) file is used to create the deployment and the service.
+
+  Create the deployment using the following command and your deployment file. 
+
+  ```bash
+  kubectl apply -f deployment.yaml
+  ```
+     Add */djangoapp* at the end of the URL to see your application.
+   
+  Use port-forwarding (if needed) to see the running application. 
+
+  ```bash
+  kubectl port-forward deployment.apps/dealership 8000:8000
+  ```
+
+## 9. Sources <a name="sources"></a>
 
 - **Template: [IBM Developer Skills Network - Cloud App Development Capstone template](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone)**
 
@@ -160,11 +214,11 @@ These proxy services enable seamless integration with external systems, providin
   - **[Full Stack Application Development Capstone Project](https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone/home/week/1)**
   - **[IBM Full Stack Software Developer Professional Certificate](https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer)**
 
-## 7. License <a name="license"></a>
+## 10. License <a name="license"></a>
 
 This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
 
-## 8. Contact <a name="contact"></a>
+## 11. Contact <a name="contact"></a>
 
 ### Contact Information :
 
