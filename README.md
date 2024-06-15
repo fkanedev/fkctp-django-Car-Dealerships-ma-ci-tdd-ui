@@ -133,10 +133,10 @@ These views utilize Django's powerful request handling and template rendering ca
 ### Models
 Django models in `server/djangoapp/models.py` define the structure of the database tables. Key models include:
 
-- **CarMake**: Represents a car make with fields for name and description.
-- **CarModel**: Represents a car model with a many-to-one relationship to CarMake. Fields include name, dealer ID, type, and year.
-- **CarDealer**: A plain Python class to hold dealer data, including address, city, full name, latitude, longitude, short name, state, and zip.
-- **DealerReview**: A plain Python class to hold review data, including car make, car model, car year, dealership, review ID, reviewer name, purchase status, purchase date, review text, and sentiment.
+- **CarMake** : Represents a car make with fields for name and description.
+- **CarModel** : Represents a car model with a many-to-one relationship to CarMake. Fields include name, dealer ID, type, and year.
+- **CarDealer** : A plain Python class to hold dealer data, including address, city, full name, latitude, longitude, short name, state, and zip.
+- **DealerReview** : A plain Python class to hold review data, including car make, car model, car year, dealership, review ID, reviewer name, purchase status, purchase date, review text, and sentiment.
 
 These models are defined using Django's ORM, providing a high-level abstraction for database operations, making it easy to create, retrieve, update, and delete records.
 
@@ -149,7 +149,7 @@ The file `server/djangoapp/restapis.py` contains functions that act as proxy ser
 - **get_dealer_by_id** : Retrieves a car dealership by its ID from a cloud function and parses the JSON response into a list of `CarDealer` objects.
 - **get_dealer_by_state** : Retrieves car dealerships by state from a cloud function and parses the JSON response into a list of `CarDealer` objects.
 - **get_dealer_reviews_from_cf** : Retrieves reviews for a specific dealership from a cloud function and parses the JSON response into a list of `DealerReview` objects.
-- `analyze_review_sentiments` : Analyzes the sentiment of a review using IBM Watson Natural Language Understanding (NLU) and returns the sentiment label (e.g., Positive, Negative).
+- **analyze_review_sentiments** : Analyzes the sentiment of a review using IBM Watson Natural Language Understanding (NLU) and returns the sentiment label (e.g., Positive, Negative).
 
 These proxy services enable seamless integration with external systems, providing essential data and insights for the application's functionality.
 
