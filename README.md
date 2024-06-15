@@ -59,6 +59,7 @@ The primary objective of this project is to develop a comprehensive car manageme
 ### Tools and Frameworks
 - **Django** : A high-level Python web framework that encourages rapid development and clean, pragmatic design.
 - **SQLite** : A lightweight, disk-based database used for local development.
+- **Bootstrap** : Utilized for responsive front-end design.
 
 ### Cloud Platforms
 - **IBM Cloud** : Used for cloud functions (serverless computing), database management with Cloudant, and deployment using Cloud Foundry.
