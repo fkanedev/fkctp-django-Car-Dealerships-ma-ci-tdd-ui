@@ -112,7 +112,7 @@ The project uses Django's templating system for rendering HTML. Templates are lo
 - **navbar.html** : Displays the navigation bar.
 - **registration.html** : Displays a "Sign Up" form for new users.
 - **about.html** and **contact.html** : Refer to national company's (Cars Dealership) presentation.
-- **dealer_details.html** : A detailed dealer page to show all reviews for the dealer. each review is displayed as a Bootstrap card, containing an (positve, neutral or negative) emoji according to the result of review's sentiment/tone analysis. A link to add reviews will be available for authenticated user.    
+- **dealer_details.html** : A detailed dealer page to show all reviews for the dealer. Each review is displayed as a Bootstrap card, containing an (positve, neutral or negative) emoji according to the result of review's sentiment/tone analysis. A link to add reviews will be available for authenticated user.    
 - **add_review.html** : A review submission page to allow user create a review for a dealer.
  
 These templates leverage Django template tags and Bootstrap for styling and layout.
