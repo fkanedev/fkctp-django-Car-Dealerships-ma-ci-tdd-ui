@@ -33,11 +33,11 @@ This project aims to develop a Django-based web application for comprehensive ca
 The primary objective of this project is to develop a comprehensive car management system using the Django framework. The system is designed to facilitate dealership listings, customer reviews, dealer information, and user interactions through a user-friendly web interface, while ensuring robust user authentication and role-based access control.
 
 ### Key Features
-- **Dealership Management** : Allows administrators to add, update, and manage dealership listings and details.
-- **Vehicle Reviews** : Enables customers to add reviews and ratings for vehicles and dealerships.
-- **Sentiment Analysis** : Utilizes natural language processing to analyze the tone and sentiment of user reviews.
-- **Dealer Details** : Provides comprehensive information about each dealer, including contact details and location.
-- **User Interaction** : Includes features for user registration, authentication, and personalized user experiences.
+- **`Dealership Management`** : Allows administrators to add, update, and manage dealership listings and details.
+- **`Vehicle Reviews`** : Enables customers to add reviews and ratings for vehicles and dealerships.
+- **`Sentiment Analysis`**` : Utilizes natural language processing to analyze the sentiment/tone of user reviews.
+- **`Dealer Details`** : Provides comprehensive information about each dealer, including contact details and location.
+- **`User Interaction`** : Includes features for user registration, authentication, and personalized user experiences.
 
 ## 2. Architecture <a name="architecture"></a>
 *Note: In this section, the architectural solution, diagram and design guidelines are provided by the training course. See the [Sources](#sources) section for more details.*
