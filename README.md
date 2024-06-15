@@ -33,11 +33,11 @@ This project aims to develop a Django-based web application for comprehensive ca
 The primary objective of this project is to develop a comprehensive car management system using the Django framework. The system is designed to facilitate dealership listings, customer reviews, dealer information, and user interactions through a user-friendly web interface, while ensuring robust user authentication and role-based access control.
 
 ### Key Features
-- **Dealership Management**: Allows administrators to add, update, and manage dealership listings and details.
-- **Vehicle Reviews**: Enables customers to add reviews and ratings for vehicles and dealerships.
-- **Sentiment Analysis**: Utilizes natural language processing to analyze the tone and sentiment of user reviews.
-- **Dealer Details**: Provides comprehensive information about each dealer, including contact details and location.
-- **User Interaction**: Includes features for user registration, authentication, and personalized user experiences.
+- **Dealership Management** : Allows administrators to add, update, and manage dealership listings and details.
+- **Vehicle Reviews** : Enables customers to add reviews and ratings for vehicles and dealerships.
+- **Sentiment Analysis** : Utilizes natural language processing to analyze the tone and sentiment of user reviews.
+- **Dealer Details** : Provides comprehensive information about each dealer, including contact details and location.
+- **User Interaction** : Includes features for user registration, authentication, and personalized user experiences.
 
 ## 2. Architecture <a name="architecture"></a>
 *Note: In this section, the architectural solution, diagram and design guidelines are provided by the training course. See the [Sources](#sources) section for more details.*
@@ -54,22 +54,22 @@ The primary objective of this project is to develop a comprehensive car manageme
 ## 3. Technologies Used <a name="technologies-used"></a>
 
 ### Programming Languages
-- **Python**: The core language used for backend development with Django.
+- **Python** : The core language used for backend development with Django.
 
 ### Tools and Frameworks
-- **Django**: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
-- **SQLite**: A lightweight, disk-based database used for local development.
+- **Django** : A high-level Python web framework that encourages rapid development and clean, pragmatic design.
+- **SQLite** : A lightweight, disk-based database used for local development.
 
 ### Cloud Platforms
-- **IBM Cloud**: Used for cloud functions (serverless computing), database management with Cloudant, and deployment using Cloud Foundry.
+- **IBM Cloud** : Used for cloud functions (serverless computing), database management with Cloudant, and deployment using Cloud Foundry.
   
 ## 4. Installation and Configuration <a name="installation-and-configuration"></a>
 
 ### Prerequisites
 Before setting up the project, 
 - Ensure that you have the following installed on your local machine:
-   - **Python 3.x**: The latest version of Python.
-   - **Pip**: Python's package installer.
+   - **Python 3.x** : The latest version of Python.
+   - **Pip** : Python's package installer.
 - Sign up for IBM Cloud Lite account and create a Watson Natural Language Understanding service.
 
 ### Installation Steps
@@ -97,11 +97,11 @@ Once the server is running, open your web browser and go to http://127.0.0.1:800
 
 ## 6. Development <a name="development"></a>
 ### Project Structure 
-- server/djangobackend/: The main Django project directory containing settings and configurations.
-- server/djangoapp/: Contains the core application responsible for car and dealerships related functionalities.
-- server/static/: Holds static files such as CSS and JavaScript.
-- cloudant/: Contains the database configurations and scripts to create the necessary databases in the remote Cloudant repository.
-- functions/: Contains the functions to be deployed on IBM Cloud Functions, including :
+- **server/djangobackend/** : The main Django project directory containing settings and configurations.
+- **server/djangoapp/** : Contains the core application responsible for car and dealerships related functionalities.
+- **server/static/** : Holds static files such as CSS and JavaScript.
+- **cloudant/** : Contains the database configurations and scripts to create the necessary databases in the remote Cloudant repository.
+- **functions/** : Contains the functions to be deployed on IBM Cloud Functions, including :
    - Node.js functions for retrieving dealership information
    - Python functions for retrieving and posting reviews.
 
@@ -119,14 +119,14 @@ These templates leverage Django template tags and Bootstrap for styling and layo
 ### Views
 View functions in `server/djangoapp/views.py` handle HTTP requests and render appropriate templates. Key view functions include:
 
-- **about**: Renders a static about page.
-- **contact**: Renders a static contact page.
-- **login_request**: Handles user login.
-- **logout_request**: Handles user logout.
-- **registration_request**: Handles user registration.
-- **get_dealerships**: Renders the index page with a list of dealerships retrieved from IBM Cloud Functions.
-- **get_dealer_details**: Renders the reviews of a specific dealer, including dealer information and reviews retrieved from IBM Cloud Functions.
-- **add_review**: Handles the submission of a new review for a dealer.
+- **about** : Renders a static about page.
+- **contact** : Renders a static contact page.
+- **login_request** : Handles user login.
+- **logout_request** : Handles user logout.
+- **registration_request** : Handles user registration.
+- **get_dealerships** : Renders the index page with a list of dealerships retrieved from IBM Cloud Functions.
+- **get_dealer_details** : Renders the reviews of a specific dealer, including dealer information and reviews retrieved from IBM Cloud Functions.
+- **add_review** : Handles the submission of a new review for a dealer.
 
 These views utilize Django's powerful request handling and template rendering capabilities to dynamically generate content based on user interactions and database queries.
 
@@ -143,23 +143,23 @@ These models are defined using Django's ORM, providing a high-level abstraction 
 ### Proxy Services
 The file `server/djangoapp/restapis.py` contains functions that act as proxy services to interact with external APIs and services, facilitating data retrieval and analysis for the application. Key functions include:
 
-- **get_request**: Makes HTTP GET requests to specified URLs, optionally using API key authentication.
-- **post_request**: Makes HTTP POST requests to specified URLs with given JSON payloads.
-- **get_dealers_from_cf**: Retrieves a list of car dealerships from a cloud function and parses the JSON response into a list of `CarDealer` objects.
-- **get_dealer_by_id**: Retrieves a car dealership by its ID from a cloud function and parses the JSON response into a list of `CarDealer` objects.
-- **get_dealer_by_state**: Retrieves car dealerships by state from a cloud function and parses the JSON response into a list of `CarDealer` objects.
-- **get_dealer_reviews_from_cf**: Retrieves reviews for a specific dealership from a cloud function and parses the JSON response into a list of `DealerReview` objects.
-- **analyze_review_sentiments**: Analyzes the sentiment of a review using IBM Watson Natural Language Understanding (NLU) and returns the sentiment label (e.g., Positive, Negative).
+- **get_request** : Makes HTTP GET requests to specified URLs, optionally using API key authentication.
+- **post_request** : Makes HTTP POST requests to specified URLs with given JSON payloads.
+- **get_dealers_from_cf** : Retrieves a list of car dealerships from a cloud function and parses the JSON response into a list of `CarDealer` objects.
+- **get_dealer_by_id** : Retrieves a car dealership by its ID from a cloud function and parses the JSON response into a list of `CarDealer` objects.
+- **get_dealer_by_state** : Retrieves car dealerships by state from a cloud function and parses the JSON response into a list of `CarDealer` objects.
+- **get_dealer_reviews_from_cf** : Retrieves reviews for a specific dealership from a cloud function and parses the JSON response into a list of `DealerReview` objects.
+- `analyze_review_sentiments` : Analyzes the sentiment of a review using IBM Watson Natural Language Understanding (NLU) and returns the sentiment label (e.g., Positive, Negative).
 
 These proxy services enable seamless integration with external systems, providing essential data and insights for the application's functionality.
 
 ## 7. Continuous Integration and Continuous Delivery (CI/CD) <a name="ci-cd"></a>
 The `.github/workflows/` directory contains GitHub Actions workflows that automate various Continuous Integration and Continuous Deployment (CI/CD) processes for the project. These workflows ensure code quality, facilitate automated testing, and manage deployments. Key workflows include:
 
-- **linter.yml**: Automates code linting to ensure code quality and adherence to coding standards.
-  - **Linting JavaScript Function**: Performs linting using npm.
-  - **Linting Python Function**: Lints Python files, disabling certain checkers for line length, invalid names, and duplicate code.
-  - **Linting Django Server**: Lints Django server Python files.
+- **linter.yml** : Automates code linting to ensure code quality and adherence to coding standards.
+  - **Linting JavaScript Function** : Performs linting using npm.
+  - **Linting Python Function** : Lints Python files, disabling certain checkers for line length, invalid names, and duplicate code.
+  - **Linting Django Server** : Lints Django server Python files.
 
 - **push-cf.yml**: Automates the build and deployment process to IBM Cloud Foundry.
   - **Setup, Build, Publish, and Deploy**:
@@ -175,7 +175,7 @@ These CI/CD workflows help maintain high code quality and streamline the deploym
 ## 8. Deployment <a name="deployment"></a>
 To stay current with technological trends and ensure flexibility, containerizing the dealership application let us deploy it across multiple cloud providers. This approach enhances flexibility and prevents vendor lock-in, as all the big cloud providers have a way to host and manage containers. 
 
-- **Containerization with Docker**:
+- **Containerization with Docker** :
   Use the below command to make [server/entrypoint.sh](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/entrypoint.sh) executable.
 
   ```bash
@@ -191,7 +191,7 @@ To stay current with technological trends and ensure flexibility, containerizing
   docker push us.icr.io/$MY_NAMESPACE/dealership
   ```
 
-- **Deployment with Kubernetes**:
+- **Deployment with Kubernetes** :
    Kubernetes is an open-source container orchestration platform (used by cloud providers) that automates the deployment, management, and scaling of applications. [server/deployment.yaml](https://github.com/fkanedev/fkctp-django-Car-Dealerships-ma-ci-tdd-ui/blob/master/server/deployment.yaml) file is used to create the deployment and the service.
 
   Create the deployment using the following command and your deployment file. 
@@ -199,7 +199,7 @@ To stay current with technological trends and ensure flexibility, containerizing
   ```bash
   kubectl apply -f deployment.yaml
   ```
-     Add */djangoapp* at the end of the URL to see your application.
+     Add `*/djangoapp` at the end of the URL to see your application.
    
   Use port-forwarding (if needed) to see the running application. 
 
@@ -209,9 +209,9 @@ To stay current with technological trends and ensure flexibility, containerizing
 
 ## 9. Sources <a name="sources"></a>
 
-- **Template: [IBM Developer Skills Network - Cloud App Development Capstone template](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone)**
+- **Template : [IBM Developer Skills Network - Cloud App Development Capstone template](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone)**
 
-- **Useful links**:
+- **Useful links** :
   - **[Full Stack Application Development Capstone Project](https://www.coursera.org/learn/ibm-cloud-native-full-stack-development-capstone/home/week/1)**
   - **[IBM Full Stack Software Developer Professional Certificate](https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer)**
 
