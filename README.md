@@ -9,6 +9,10 @@
 # Car Management Application
 This project aims to develop a Django-based web application for comprehensive cars dealership management, vehicle reviews and personalized user experiences. It demonstrates the practical application of Django in a real-world scenario. It's part of my training in the [IBM Full Stack Software Developer Professional Certificate](https://www.coursera.org/professional-certificates/ibm-full-stack-cloud-developer) utilizing a [template](https://github.com/ibm-developer-skills-network/agfzb-CloudAppDevelopment_Capstone) provided by IBM Developer Skills Network.
 
+# Topics
+`Django`, `Python`, `Car Management`, `Dealership Management`, `Vehicle Reviews`, `Sentiment Analysis`, `Natural Language Processing`, `IBM Cloud`, `Cloudant`, `IBM Watson NLU`, `SQLite`, `Bootstrap`, `Cloud Functions`, `Continuous Integration`, `Continuous Deployment`, `GitHub Actions`, `Docker`, `Kubernetes`, `Microservices`, `Full Stack Development`, `Capstone Project`, `Back-end Development`, `REST API`
+
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Architecture](#architecture)
