@@ -234,5 +234,5 @@ This project is licensed under the MIT License - see the [LICENSE](/LICENSE) fil
 
 ### Contribution and Support :
 
-Contributions are welcome. Please refer to the [CONTRIBUTING](/CONTRIBUTING) file for more information on how to contribute.
+Contributions are welcome. Please refer to the [CONTRIBUTING](/CONTRIBUTING.md) file for more information on how to contribute.
 
